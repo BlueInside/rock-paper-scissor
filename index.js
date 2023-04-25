@@ -11,15 +11,17 @@ function computerSelection() {
 
 // 2 Write function that plays one round of Rock Paper Scissors
 // function take two params playerSelection adn computerSelection returns a string that declares winner of round
-//    - function that takes two args (Rock paper scissor) compares them according to RPS rules and return winner player or computer
 function playRound(computerSelection, playerChoice) {
-  playerChoice = playerChoice.toLowerCase();
   let computerChoice = computerSelection();
-  // log to the user choices
-  console.log(`
-  Player chose:     ${playerChoice}
-  Computer chose:   ${computerChoice}
-  `);
+
+  const scoreboard = document.querySelector(".scoreboard");
+  //empty scoreboard every round
+  if (scoreboard.innerText) scoreboard.removeChild(scoreboard.lastChild);
+
+  //display player choices
+  const para = document.createElement("p");
+  playerChoice = playerChoice.toLowerCase();
+  scoreboard.appendChild(para);
   let winner = "";
   // logic that compares players choices
   // when computer wins
@@ -31,7 +33,11 @@ function playRound(computerSelection, playerChoice) {
     winner = "Computer";
   } else if (computerChoice === playerChoice) winner = "Draw";
   else winner = "Player";
-  return winner;
+  para.innerText = `
+  Player chose:     ${playerChoice}
+  Computer chose:   ${computerChoice}
+  Winner:           ${winner}
+  `;
 }
 // add event listener for each button on page
 // play round with appropriate player selector
