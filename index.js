@@ -48,30 +48,3 @@ function playRound(computerSelection, playerSelection) {
   else winner = "Player";
   return winner;
 }
-
-// 3 Write new function game()
-// use it to play 5 round game that keeps score and reports winner
-function game() {
-  let playerScores = 0;
-  let computerScores = 0;
-  for (let index = 0; index < 5; index++) {
-    let winner = playRound(computerSelection, playerSelection);
-    if (winner === "Player") {
-      playerScores++;
-      console.log(
-        `Player wins this round! Player Score ${playerScores} Computer Score ${computerScores} `
-      );
-    } else if (winner === "Computer") {
-      computerScores++;
-      console.log(
-        `Computer wins this round! Computer Score ${computerScores} Player Score ${playerScores}`
-      );
-    } else console.log("Draw! no scores");
-  }
-  if (playerScores > computerScores) return "Player won!";
-  else if (playerScores < computerScores) return "Computer Won";
-  else return "It's a Draw!";
-}
-// use console.log() to display the results of each round and winner
-
-console.log(game());
