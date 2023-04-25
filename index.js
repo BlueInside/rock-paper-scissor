@@ -1,3 +1,6 @@
+let computerScore = 0;
+let playerScore = 0;
+
 // 1 We will play against computer that randomly return Rock paper or scissor
 //   - function that returns "Rock" "Paper" or "Scissor" randomly
 function computerSelection() {
@@ -13,11 +16,15 @@ function computerSelection() {
 // function take two params playerSelection adn computerSelection returns a string that declares winner of round
 function playRound(computerSelection, playerChoice) {
   let computerChoice = computerSelection();
+  //play till 5 wins!
+  if (playerScore === 5 || computerScore === 5) return;
 
   const scoreboard = document.querySelector(".scoreboard");
   //empty scoreboard every round
   if (scoreboard.innerText) scoreboard.removeChild(scoreboard.lastChild);
 
+  //display scores
+  const scores = document.querySelector(".scores");
   //display player choices
   const para = document.createElement("p");
   playerChoice = playerChoice.toLowerCase();
@@ -31,8 +38,17 @@ function playRound(computerSelection, playerChoice) {
     (computerChoice === "scissor" && playerChoice === "paper")
   ) {
     winner = "Computer";
+    ++computerScore;
   } else if (computerChoice === playerChoice) winner = "Draw";
-  else winner = "Player";
+  else {
+    winner = "Player";
+    [++playerScore];
+  }
+  scores.innerText = `Player: ${playerScore}  CPU: ${computerScore}`;
+  if (playerScore === 5 || computerScore === 5) {
+    para.innerText = `${winner} win!`;
+    return;
+  }
   para.innerText = `
   Player chose:     ${playerChoice}
   Computer chose:   ${computerChoice}
