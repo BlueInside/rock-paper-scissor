@@ -8,21 +8,6 @@ function computerSelection() {
   else result = "Scissor";
   return result.toLowerCase();
 }
-//player selection function return paper scissor or rock
-function playerSelection() {
-  let userInput = prompt("Choose rock paper or scissor").toLowerCase();
-  if (
-    userInput !== "rock" &&
-    userInput !== "paper" &&
-    userInput !== "scissor"
-  ) {
-    alert("Please type rock paper or scissor!");
-    //repeats if input was incorrect
-    return playerSelection();
-  } else {
-    return userInput;
-  }
-}
 
 // 2 Write function that plays one round of Rock Paper Scissors
 // function take two params playerSelection adn computerSelection returns a string that declares winner of round
